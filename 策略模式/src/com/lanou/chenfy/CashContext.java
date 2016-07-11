@@ -4,8 +4,16 @@ public class CashContext {
 	private CashSuper cs;
 	
 	//通过构造方法传入具体的收费策略
-	public CashContext(CashSuper cSuper){
-		this.cs = cSuper;
+	public CashContext(String type){
+		switch (type) {
+		case "正常收费":
+			cs = new CashNormal();
+			break;
+
+		case "打折收费":
+			cs = new CashRebate(0.8f);
+			break;
+		}
 	}
 	
 	public double getResult(double money) {
